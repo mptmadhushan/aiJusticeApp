@@ -15,6 +15,7 @@ import LinearGradient from 'react-native-linear-gradient';
 export default function OnBoard({navigation}) {
   const [text, setText] = React.useState('');
   const [violationData, setResponse] = React.useState({});
+  
   const onSubmitFormHandler = async () => {
     console.log('hello')
    
@@ -114,12 +115,15 @@ export default function OnBoard({navigation}) {
 
         </TouchableOpacity>
         <Text style={styles.title2}>Violation Data</Text>
-   {   violationData&&  <View>
-        <Text style={styles.title3}>Court : {violationData.violationData.Court}</Text>
-        <Text style={styles.title3}>Document Should Bring : {violationData.violationData.DocumentShouldBring}</Text>
-        <Text style={styles.title3}>Lawyers : {violationData.violationData.Lawyers}</Text>
-        <Text style={styles.title3}>Suggetion : {violationData.violationData.Suggetion}</Text>
-        </View>}
+   {   violationData?.violationData !== null ?  <View>
+        <Text style={styles.title3}>Court : {violationData?.violationData?.Court}</Text>
+        <Text style={styles.title3}>Document Should Bring : {violationData?.violationData?.DocumentShouldBring}</Text>
+        <Text style={styles.title3}>Lawyers : {violationData?.violationData?.Lawyers}</Text>
+        <Text style={styles.title3}>Suggetion : {violationData?.violationData?.Suggetion}</Text>
+        <Text style={styles.title3}>violation Type : {violationData?.violationType}</Text>
+        </View>:
+        <Text style={styles.title3}>no-violation</Text>
+      }
       </View>
     </ScrollView>
   );
